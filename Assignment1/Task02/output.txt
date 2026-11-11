@@ -1,0 +1,4 @@
+CITY METRO SMART CARD SYSTEM
+Passenger Name: Lavanya
+Passenger Age: 20
+Base Fare: Rs. 10

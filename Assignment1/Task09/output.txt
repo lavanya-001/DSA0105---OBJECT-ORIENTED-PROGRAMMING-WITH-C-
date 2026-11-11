@@ -1,0 +1,5 @@
+CITY METRO SMART CARD SYSTEM
+Select Zone (1.Inner  2.Outer  3.Interchange): Select Category (1.Regular  2.Student  3.Senior): 
+Base Fare: Rs. 20
+Discount: 50%
+Final Fare: Rs. 10

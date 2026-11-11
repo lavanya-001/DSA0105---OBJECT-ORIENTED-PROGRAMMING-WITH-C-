@@ -1,0 +1,6 @@
+CITY METRO SMART CARD SYSTEM
+1. Inner - Rs. 10
+2. Outer - Rs. 20
+3. Interchange - Rs. 30
+4. Airport - Rs. 60
+Select Zone: Monthly Pass? (1-Yes, 0-No): Select second zone (1-4): Monthly pass covers zones 4 and 1

@@ -1,0 +1,6 @@
+METRO SMART CARD - DATA TYPES
+Passenger Age: 20
+Ticket Fare: Rs. 25.5
+Card Balance: Rs. 150.75
+Passenger Type: S
+Student Status: true

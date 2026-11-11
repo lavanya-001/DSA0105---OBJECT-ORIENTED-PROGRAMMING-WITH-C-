@@ -1,0 +1,3 @@
+CITY METRO SMART CARD SYSTEM
+Enter passenger age: Passenger Age: 20
+Input accepted successfully.

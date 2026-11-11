@@ -1,0 +1,8 @@
+CITY METRO SMART CARD SYSTEM
+Enter passenger age: Category: Adult
+Fare: Rs. 10
+
+Select travel zone:
+1. Inner Zone
+2. Outer Zone
+Enter choice: Selected: Inner Zone

@@ -1,0 +1,6 @@
+METRO FARE CALCULATION
+Base Fare: Rs. 10
+Passengers: 3
+Total Fare: Rs. 35
+Discounted Fare: Rs. 25
+Operator Precedence Result: 40

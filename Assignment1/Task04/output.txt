@@ -1,0 +1,6 @@
+METRO FARE - IMPLICIT CONVERSION
+Integer Fare: 10
+Converted Double Fare: 10
+Character Category: S
+Character ASCII Value: 83
+Total Fare: 76.5

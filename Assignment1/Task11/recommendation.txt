@@ -1,0 +1,15 @@
+FINAL DESIGN RECOMMENDATION
+
+1. Use Object-Oriented Programming to organize the metro smart-card system.
+2. Use separate classes for Passenger, SmartCard and Journey.
+3. Use appropriate data types to store passenger details, balance and fare.
+4. Use if-else and switch statements for fare calculation.
+5. Validate user input to prevent invalid values.
+6. Apply discounts accurately using double data type.
+7. Check card balance before completing a journey.
+8. Test the system with different passenger categories and travel zones.
+
+CONCLUSION:
+An OOP-based metro smart-card system is easy to maintain,
+understand and expand. Input validation and proper fare
+calculation improve its reliability and accuracy.

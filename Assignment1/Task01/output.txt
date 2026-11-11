@@ -1,0 +1,6 @@
+CITY METRO SMART CARD SYSTEM
+Passenger: Lavanya
+Category: Student
+Card Balance: Rs. 100
+Travel Zone: Inner Zone
+Fare: Rs. 10

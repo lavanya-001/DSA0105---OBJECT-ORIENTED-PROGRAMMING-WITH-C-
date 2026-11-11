@@ -1,0 +1,6 @@
+EXPECTED VS ACTUAL OUTPUT
+Expected Total Fare: Rs. 50
+Actual Total Fare: Rs. 50
+Exact Fare: Rs. 10.75
+Integer Fare: Rs. 10
+Maximum Integer: 2147483647

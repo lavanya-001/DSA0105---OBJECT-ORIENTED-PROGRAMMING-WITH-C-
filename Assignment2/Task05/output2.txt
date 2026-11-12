@@ -1,0 +1,6 @@
+Seat 1 booked
+Seat 2 booked
+Seat 3 booked
+Passenger 104 added to waiting list
+Tickets issued: 3
+Waiting passengers: 1

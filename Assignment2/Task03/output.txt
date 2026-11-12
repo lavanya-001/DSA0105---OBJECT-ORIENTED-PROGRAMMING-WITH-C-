@@ -1,0 +1,5 @@
+Integer charge: Rs. 100
+Decimal charge: Rs. 150.5
+Total bill: Rs. 115
+Total bill: Rs. 120
+Total bill: Rs. 125

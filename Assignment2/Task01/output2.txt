@@ -1,0 +1,2 @@
+After call by value: 45000
+After call by reference: 40500

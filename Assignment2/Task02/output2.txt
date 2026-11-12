@@ -1,0 +1,5 @@
+Before reallocation: 10
+Vector capacity: 2
+After adding an element, vector size: 3
+The old reference may now be invalid.
+Do not access ref after reallocation.

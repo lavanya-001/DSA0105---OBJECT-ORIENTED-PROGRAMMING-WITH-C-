@@ -1,0 +1,2 @@
+Integer amount selected
+Decimal amount selected

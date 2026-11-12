@@ -1,0 +1,4 @@
+Ticket booked for seat 1
+Ticket booked for seat 2
+Ticket booked for seat 3
+Total tickets issued: 3

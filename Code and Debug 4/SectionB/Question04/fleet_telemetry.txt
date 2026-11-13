@@ -1,0 +1,119 @@
+QUESTION 4: MULTI-LEVEL AUTONOMOUS FLEET TELEMETRY
+
+CLASS Vehicle
+
+PROTECTED:
+    STRING vehicleVIN
+    REAL baseWeightKg
+
+PUBLIC:
+    CONSTRUCTOR(vin, weight)
+        vehicleVIN = vin
+        baseWeightKg = weight
+    END CONSTRUCTOR
+
+    METHOD DisplaySpecs()
+        DISPLAY "Vehicle VIN: ", vehicleVIN
+        DISPLAY "Base Weight: ", baseWeightKg, " kg"
+    END METHOD
+
+END CLASS
+
+
+CLASS AutonomousVehicle INHERITS Vehicle
+
+PROTECTED:
+    STRING lidarSensorID
+    STRING firmwareVersion
+
+PUBLIC:
+    CONSTRUCTOR(vin, weight, lidar, firmware)
+        CALL Vehicle(vin, weight)
+        lidarSensorID = lidar
+        firmwareVersion = firmware
+    END CONSTRUCTOR
+
+END CLASS
+
+
+CLASS DeliveryDrone INHERITS AutonomousVehicle
+
+PRIVATE:
+    REAL payloadCapacityKg
+    REAL batteryChargePercent
+
+PUBLIC:
+    CONSTRUCTOR(vin, weight, lidar, firmware, payload, battery)
+        CALL AutonomousVehicle(vin, weight, lidar, firmware)
+        payloadCapacityKg = payload
+        batteryChargePercent = battery
+    END CONSTRUCTOR
+
+    METHOD DisplayFlightStatus()
+        CALL DisplaySpecs()
+        DISPLAY "LiDAR Sensor ID: ", lidarSensorID
+        DISPLAY "Firmware Version: ", firmwareVersion
+        DISPLAY "Payload Capacity: ", payloadCapacityKg, " kg"
+        DISPLAY "Battery Charge: ", batteryChargePercent, "%"
+    END METHOD
+
+END CLASS
+
+
+MAIN
+
+    CREATE POINTER dronePtr AS DeliveryDrone
+
+    dronePtr = NEW DeliveryDrone(
+        "DRN-2048",
+        12.5,
+        "LIDAR-X7",
+        "2.4.1",
+        3.0,
+        85
+    )
+
+    CREATE basePtr AS POINTER TO Vehicle
+
+    basePtr = dronePtr
+
+    DISPLAY "GENERAL VEHICLE SPECIFICATIONS:"
+    CALL basePtr.DisplaySpecs()
+
+    CREATE fullPtr AS POINTER TO DeliveryDrone
+
+    fullPtr = CAST basePtr TO DeliveryDrone POINTER
+
+    DISPLAY "FULL DRONE TELEMETRY:"
+    CALL fullPtr.DisplayFlightStatus()
+
+    DELETE dronePtr
+
+END MAIN
+
+
+DRY RUN
+
+1. Create DeliveryDrone object dynamically.
+2. Vehicle constructor initializes VIN and weight.
+3. AutonomousVehicle constructor initializes LiDAR and firmware.
+4. DeliveryDrone constructor initializes payload and battery.
+5. Vehicle pointer accesses general vehicle specifications.
+6. Downcast the pointer to DeliveryDrone pointer.
+7. Display complete drone telemetry.
+8. Delete the dynamically allocated object.
+
+
+EXPECTED OUTPUT
+
+GENERAL VEHICLE SPECIFICATIONS:
+Vehicle VIN: DRN-2048
+Base Weight: 12.5 kg
+
+FULL DRONE TELEMETRY:
+Vehicle VIN: DRN-2048
+Base Weight: 12.5 kg
+LiDAR Sensor ID: LIDAR-X7
+Firmware Version: 2.4.1
+Payload Capacity: 3 kg
+Battery Charge: 85%

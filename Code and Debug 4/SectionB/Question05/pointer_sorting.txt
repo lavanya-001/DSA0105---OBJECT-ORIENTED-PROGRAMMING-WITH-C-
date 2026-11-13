@@ -1,0 +1,106 @@
+QUESTION 5: DYNAMIC OBJECT POINTER ARRAY AND ZERO-COPY SORTING
+
+CLASS Product
+
+PUBLIC:
+    STRING sku
+    REAL price
+    INTEGER stockCount
+
+    CONSTRUCTOR(s, p, count)
+        sku = s
+        price = p
+        stockCount = count
+    END CONSTRUCTOR
+
+    METHOD PrintProduct()
+        DISPLAY sku, " - $", price, " - Stock: ", stockCount
+    END METHOD
+
+END CLASS
+
+
+MAIN
+
+    DECLARE INTEGER n = 3
+
+    CREATE DYNAMIC ARRAY catalog OF Product POINTERS WITH SIZE n
+
+    catalog[0] = NEW Product("Laptop", 1200, 10)
+    catalog[1] = NEW Product("Mouse", 25, 50)
+    catalog[2] = NEW Product("Monitor", 350, 20)
+
+    DISPLAY "BEFORE SORTING"
+
+    FOR i = 0 TO n - 1
+        CALL catalog[i].PrintProduct()
+    END FOR
+
+    // Bubble sort by ascending price
+    FOR i = 0 TO n - 2
+        FOR j = 0 TO n - i - 2
+
+            IF catalog[j].price > catalog[j + 1].price
+
+                TEMP = catalog[j]
+                catalog[j] = catalog[j + 1]
+                catalog[j + 1] = TEMP
+
+            END IF
+
+        END FOR
+    END FOR
+
+    DISPLAY "AFTER SORTING"
+
+    FOR i = 0 TO n - 1
+        CALL catalog[i].PrintProduct()
+    END FOR
+
+    // Free dynamically allocated objects
+    FOR i = 0 TO n - 1
+        DELETE catalog[i]
+    END FOR
+
+    DELETE ARRAY catalog
+
+END MAIN
+
+
+DRY RUN
+
+Initial Products:
+Laptop  - $1200
+Mouse   - $25
+Monitor - $350
+
+First comparison:
+Laptop ($1200) > Mouse ($25)
+Swap their pointers.
+
+Second comparison:
+Laptop ($1200) > Monitor ($350)
+Swap their pointers.
+
+Final sorted order:
+Mouse ($25)
+Monitor ($350)
+Laptop ($1200)
+
+IMPORTANT:
+Only pointers are swapped during sorting.
+The actual Product objects are not copied or moved.
+This is called zero-copy pointer sorting.
+
+
+EXPECTED OUTPUT
+
+BEFORE SORTING
+Laptop - $1200 - Stock: 10
+Mouse - $25 - Stock: 50
+Monitor - $350 - Stock: 20
+
+AFTER SORTING
+Mouse - $25 - Stock: 50
+Monitor - $350 - Stock: 20
+Laptop - $1200 - Stock: 10

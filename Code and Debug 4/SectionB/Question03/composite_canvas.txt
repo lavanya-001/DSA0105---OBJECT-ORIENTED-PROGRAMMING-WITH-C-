@@ -1,0 +1,87 @@
+QUESTION 3: COMPOSITE CANVAS ENGINE
+
+CLASS Point2D
+
+PRIVATE:
+    REAL x, y
+
+PUBLIC:
+    CONSTRUCTOR(a = 0.0, b = 0.0)
+        x = a
+        y = b
+    END CONSTRUCTOR
+
+    METHOD Display()
+        DISPLAY "Center: (", x, ", ", y, ")"
+    END METHOD
+
+END CLASS
+
+
+CLASS Circle
+
+PRIVATE:
+    Point2D centerPoint
+    REAL radius
+
+PUBLIC:
+    CONSTRUCTOR()
+        centerPoint = Point2D(0.0, 0.0)
+        radius = 1.0
+    END CONSTRUCTOR
+
+    METHOD SetCenter(newX, newY) RETURNS REF Circle
+        centerPoint = Point2D(newX, newY)
+        RETURN REF THIS
+    END METHOD
+
+    METHOD SetRadius(r) RETURNS REF Circle
+        IF r > 0
+            radius = r
+        ELSE
+            DISPLAY "Invalid radius"
+        END IF
+
+        RETURN REF THIS
+    END METHOD
+
+    METHOD Draw()
+        DISPLAY "Circle Specifications:"
+        CALL centerPoint.Display()
+        DISPLAY "Radius: ", radius
+    END METHOD
+
+END CLASS
+
+
+MAIN
+
+    CREATE myCircle AS Circle()
+
+    CALL myCircle.SetCenter(12.5, 30.0)
+              .SetRadius(7.5)
+              .Draw()
+
+END MAIN
+
+
+DRY RUN
+
+Initial Center = (0.0, 0.0)
+Initial Radius = 1.0
+
+SetCenter(12.5, 30.0)
+New Center = (12.5, 30.0)
+
+SetRadius(7.5)
+New Radius = 7.5
+
+Draw()
+Displays circle specifications.
+
+
+EXPECTED OUTPUT
+
+Circle Specifications:
+Center: (12.5, 30)
+Radius: 7.5

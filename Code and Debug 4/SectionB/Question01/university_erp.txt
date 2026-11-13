@@ -1,0 +1,98 @@
+QUESTION 1: UNIVERSITY ERP HYBRID INHERITANCE
+
+CLASS Person
+    PRIVATE:
+        STRING personID
+        STRING fullName
+        STRING email
+
+    CONSTRUCTOR(id, name, mail)
+        personID = id
+        fullName = name
+        email = mail
+    END CONSTRUCTOR
+
+    METHOD DisplayPerson()
+        DISPLAY "Person ID: ", personID
+        DISPLAY "Name: ", fullName
+        DISPLAY "Email: ", email
+    END METHOD
+END CLASS
+
+
+CLASS Student EXTENDS VIRTUAL Person
+    PRIVATE:
+        REAL gpa
+        INTEGER creditsEarned
+
+    CONSTRUCTOR(id, name, mail, g, credits)
+        BASE Person(id, name, mail)
+        gpa = g
+        creditsEarned = credits
+    END CONSTRUCTOR
+END CLASS
+
+
+CLASS Faculty EXTENDS VIRTUAL Person
+    PRIVATE:
+        STRING academicDepartment
+        STRING rankTitle
+
+    CONSTRUCTOR(id, name, mail, dept, rank)
+        BASE Person(id, name, mail)
+        academicDepartment = dept
+        rankTitle = rank
+    END CONSTRUCTOR
+END CLASS
+
+
+CLASS TeachingAssistant EXTENDS Student, Faculty
+    PRIVATE:
+        REAL stipendAmount
+        STRING assignedCourse
+
+    CONSTRUCTOR(id, name, mail, g, credits, dept, rank, stipend, course)
+        BASE Person(id, name, mail)
+        BASE Student(id, name, mail, g, credits)
+        BASE Faculty(id, name, mail, dept, rank)
+
+        stipendAmount = stipend
+        assignedCourse = course
+    END CONSTRUCTOR
+
+    METHOD DisplayTARecord()
+        CALL DisplayPerson()
+        DISPLAY "GPA: ", gpa
+        DISPLAY "Department: ", academicDepartment
+        DISPLAY "Stipend: ", stipendAmount
+        DISPLAY "Assigned Course: ", assignedCourse
+    END METHOD
+END CLASS
+
+
+MAIN
+    CREATE ta AS TeachingAssistant(
+        "192565025",
+        "Lavanya",
+        "lavanya@example.com",
+        8.5,
+        90,
+        "Computer Science",
+        "Assistant Professor",
+        15000,
+        "C++ Programming"
+    )
+
+    CALL ta.DisplayTARecord()
+END MAIN
+
+
+EXPECTED OUTPUT
+
+Person ID: 192565025
+Name: Lavanya
+Email: lavanya@example.com
+GPA: 8.5
+Department: Computer Science
+Stipend: 15000
+Assigned Course: C++ Programming

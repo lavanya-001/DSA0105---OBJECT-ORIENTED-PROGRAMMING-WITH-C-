@@ -1,0 +1,132 @@
+QUESTION 2: POLYMORPHIC PAYROLL SYSTEM
+
+ABSTRACT CLASS Employee
+
+PROTECTED:
+    STRING employeeID
+    STRING name
+
+PUBLIC:
+    CONSTRUCTOR(id, empName)
+        employeeID = id
+        name = empName
+    END CONSTRUCTOR
+
+    ABSTRACT METHOD CalculatePay() RETURNS REAL
+
+    METHOD DisplayHeader()
+        DISPLAY "Employee ID: ", employeeID
+        DISPLAY "Name: ", name
+    END METHOD
+
+END CLASS
+
+
+CLASS SalariedEmployee EXTENDS Employee
+
+PRIVATE:
+    REAL monthlySalary
+
+PUBLIC:
+    CONSTRUCTOR(id, empName, salary)
+        BASE Employee(id, empName)
+        monthlySalary = salary
+    END CONSTRUCTOR
+
+    METHOD CalculatePay() RETURNS REAL
+        RETURN monthlySalary
+    END METHOD
+
+END CLASS
+
+
+CLASS HourlyEmployee EXTENDS Employee
+
+PRIVATE:
+    REAL hourlyWage
+    REAL hoursWorked
+
+PUBLIC:
+    CONSTRUCTOR(id, empName, wage, hours)
+        BASE Employee(id, empName)
+        hourlyWage = wage
+        hoursWorked = hours
+    END CONSTRUCTOR
+
+    METHOD CalculatePay() RETURNS REAL
+        IF hoursWorked <= 40
+            RETURN hourlyWage * hoursWorked
+        ELSE
+            regularPay = 40 * hourlyWage
+            overtimeHours = hoursWorked - 40
+            overtimePay = overtimeHours * hourlyWage * 1.5
+
+            RETURN regularPay + overtimePay
+        END IF
+    END METHOD
+
+END CLASS
+
+
+MAIN
+
+    DECLARE employees AS ARRAY OF POINTER TO Employee[2]
+
+    employees[0] = NEW SalariedEmployee(
+        "E101", "Arun", 8500
+    )
+
+    employees[1] = NEW HourlyEmployee(
+        "E102", "Bala", 50, 48
+    )
+
+    totalPay = 0
+
+    FOR i = 0 TO 1
+        employees[i]->DisplayHeader()
+
+        pay = employees[i]->CalculatePay()
+
+        DISPLAY "Salary: ", pay
+
+        totalPay = totalPay + pay
+    END FOR
+
+    DISPLAY "Total Payroll: ", totalPay
+
+    FOR i = 0 TO 1
+        DELETE employees[i]
+    END FOR
+
+END MAIN
+
+
+DRY RUN
+
+Salaried Employee:
+Monthly Salary = 8500
+
+Hourly Employee:
+Hourly Wage = 50
+Hours Worked = 48
+
+Regular Pay = 40 * 50 = 2000
+Overtime Hours = 48 - 40 = 8
+Overtime Pay = 8 * 50 * 1.5 = 600
+
+Total Hourly Pay = 2000 + 600 = 2600
+
+Total Payroll = 8500 + 2600 = 11100
+
+
+EXPECTED OUTPUT
+
+Employee ID: E101
+Name: Arun
+Salary: 8500
+
+Employee ID: E102
+Name: Bala
+Salary: 2600
+
+Total Payroll: 11100

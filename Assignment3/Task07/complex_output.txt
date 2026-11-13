@@ -1,0 +1,29 @@
+COMPLEX NUMBER OPERATOR OVERLOADING
+
+First complex number: 10 + 15i
+Second complex number: 5 + 3i
+
+ARITHMETIC OPERATIONS
+Addition: 15 + 18i
+Subtraction: 5 + 12i
+Multiplication: 5 + 105i
+Division: 2.79412 + 1.32353i
+
+COMPARISON
+Equality: Not Equal
+
+MAGNITUDE
+Magnitude of first number: 18.0278
+
+RLC CIRCUIT IMPEDANCE
+Resistance (R): 10 ohms
+Inductive reactance (XL): 20 ohms
+Capacitive reactance (XC): 5 ohms
+Total impedance: 10 + 15i ohms
+Impedance magnitude: 18.0278 ohms
+
+STD::COMPLEX COMPARISON
+Using std::complex addition: 15 + 18i
+
+DIVISION BY ZERO TEST
+Error: Division by zero is not allowed

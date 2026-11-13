@@ -1,0 +1,16 @@
+Program started
+
+Constructor: Stack Object
+
+Entering block
+Constructor: Block Object
+Leaving block
+Destructor: Block Object
+
+Creating heap object
+Constructor: Heap Object
+Deleting heap object
+Destructor: Heap Object
+
+Program ending
+Destructor: Stack Object

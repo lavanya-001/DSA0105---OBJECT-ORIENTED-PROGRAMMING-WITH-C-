@@ -1,0 +1,21 @@
+Auditorium created: 3 rows, 4 columns
+
+AUDITORIUM SEAT MAP
+O O O O 
+O O O O 
+O O O O 
+Seat booked successfully!
+Seat booked successfully!
+
+AUDITORIUM SEAT MAP
+O X O O 
+O O X O 
+O O O O 
+Booking cancelled!
+
+AUDITORIUM SEAT MAP
+O O O O 
+O O X O 
+O O O O 
+Invalid seat number!
+Auditorium memory released.

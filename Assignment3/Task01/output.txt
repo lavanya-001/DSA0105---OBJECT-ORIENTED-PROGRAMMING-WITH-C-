@@ -1,0 +1,21 @@
+LIBRARY BOOK RECORDS
+Default Constructor:
+Title: Unknown
+Author: Unknown
+Copies: 0
+-------------------
+Title-only Constructor:
+Title: C++ Programming
+Author: Unknown
+Copies: 1
+-------------------
+Parameterized Constructor:
+Title: Object Oriented Programming
+Author: Bjarne Stroustrup
+Copies: 5
+-------------------
+Negative Copies Test:
+Title: Invalid Book
+Author: Unknown
+Copies: 0
+-------------------

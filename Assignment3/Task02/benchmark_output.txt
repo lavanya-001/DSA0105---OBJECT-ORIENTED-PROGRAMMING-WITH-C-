@@ -1,0 +1,4 @@
+DEEP COPY TIME BENCHMARK
+Size: 10 | 100 copies took: 8 microseconds
+Size: 1000 | 100 copies took: 330 microseconds
+Size: 100000 | 100 copies took: 35031 microseconds

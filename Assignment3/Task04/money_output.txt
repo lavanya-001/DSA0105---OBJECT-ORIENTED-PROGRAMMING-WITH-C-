@@ -1,0 +1,18 @@
+MONEY OPERATOR OVERLOADING
+First amount: Rs. 0.75
+Second amount: Rs. 0.50
+Addition: Rs. 1.25
+Subtraction: Rs. 0.25
+After += : Rs. 1.25
+Equality: Not Equal
+Less than: True
+Negative subtraction: -Rs. 0.50
+
+STREAM INPUT TEST
+Enter rupees and paise: Entered amount: Rs. 10.50
+
+PERFORMANCE TEST
+One million additions: Rs. 10000.00
+Integer time: 41090 microseconds
+Double result: 10000.00
+Double time: 12824 microseconds

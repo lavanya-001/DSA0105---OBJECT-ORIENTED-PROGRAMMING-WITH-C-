@@ -1,0 +1,24 @@
+TEXT OPERATOR OVERLOADING
+First text: Hello 
+Second text: World
+Combined text: Hello World
+Equality: Not Equal
+Inequality: True
+Empty text: []
+Long text: C++ Operator Overloading
+
+SELF ASSIGNMENT TEST
+Hello 
+
+COPY TEST
+Copy constructor called
+Copied text: C++ Operator Overloading
+
+RULES OF OPERATOR OVERLOADING
+1. At least one operand must be a user-defined type.
+2. Operator precedence cannot be changed.
+3. Number of operands cannot be changed.
+4. Operators cannot be created or invented.
+5. Some operators cannot be overloaded.
+
+Non-overloadable operators: .  .*  ::  ?:  sizeof

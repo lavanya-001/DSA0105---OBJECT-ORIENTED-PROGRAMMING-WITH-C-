@@ -1,0 +1,72 @@
+ALGORITHM WaterConsumerBill
+
+CLASS WaterConsumer
+
+    PRIVATE:
+        previousReading : INTEGER
+        currentReading : INTEGER
+        unitsConsumed : INTEGER
+        billAmount : REAL
+        surcharge : REAL
+        totalBill : REAL
+
+    PUBLIC:
+
+        METHOD Initialize(previous, current)
+            previousReading = previous
+            currentReading = current
+        END METHOD
+
+        METHOD CalculateConsumption()
+            IF currentReading < previousReading THEN
+                DISPLAY "Invalid Meter Readings"
+                RETURN
+            END IF
+
+            unitsConsumed = currentReading - previousReading
+        END METHOD
+
+        METHOD ComputeBill()
+
+            IF unitsConsumed <= 100 THEN
+                billAmount = unitsConsumed * 1.50
+
+            ELSE IF unitsConsumed <= 300 THEN
+                billAmount = (100 * 1.50) +
+                             ((unitsConsumed - 100) * 2.50)
+
+            ELSE
+                billAmount = (100 * 1.50) +
+                             (200 * 2.50) +
+                             ((unitsConsumed - 300) * 4.00)
+            END IF
+
+            IF unitsConsumed > 300 THEN
+                surcharge = billAmount * 0.10
+            ELSE
+                surcharge = 0
+            END IF
+
+            totalBill = billAmount + surcharge
+
+        END METHOD
+
+        METHOD DisplayBill()
+            DISPLAY "Units Consumed:", unitsConsumed
+            DISPLAY "Bill Amount:", billAmount
+            DISPLAY "Environmental Surcharge:", surcharge
+            DISPLAY "Total Bill:", totalBill
+        END METHOD
+
+END CLASS
+
+
+BEGIN
+    CREATE consumer AS WaterConsumer
+
+    consumer.Initialize(1450, 1820)
+    consumer.CalculateConsumption()
+    consumer.ComputeBill()
+    consumer.DisplayBill()
+
+END

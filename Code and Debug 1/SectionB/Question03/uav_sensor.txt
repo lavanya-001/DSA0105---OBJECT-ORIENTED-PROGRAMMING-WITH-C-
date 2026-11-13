@@ -1,0 +1,45 @@
+ALGORITHM UAVSensorReadiness
+
+BEGIN
+
+    DECLARE sensorStatus : INTEGER
+    DECLARE mandatoryMask : INTEGER
+    DECLARE inhibitorMask : INTEGER
+    DECLARE missingSensors : INTEGER
+
+    mandatoryMask = 0x0F
+    inhibitorMask = 0xB0
+
+    FOR EACH sensorStatus IN [0x4F, 0x3B]
+
+        DISPLAY "Sensor Status:", sensorStatus
+
+        missingSensors = mandatoryMask XOR
+                         (sensorStatus AND mandatoryMask)
+
+        IF missingSensors == 0 AND
+           (sensorStatus AND inhibitorMask) == 0 THEN
+
+            DISPLAY "UAV Status: READY"
+
+        ELSE
+
+            DISPLAY "UAV Status: NOT READY"
+
+            IF (missingSensors AND 0x04) != 0 THEN
+                DISPLAY "Missing Barometric Altimeter"
+            END IF
+
+            IF (sensorStatus AND 0x10) != 0 THEN
+                DISPLAY "Low Battery Warning"
+            END IF
+
+            IF (sensorStatus AND 0x20) != 0 THEN
+                DISPLAY "Over Temperature Warning"
+            END IF
+
+        END IF
+
+    END FOR
+
+END

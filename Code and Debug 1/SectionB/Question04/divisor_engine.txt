@@ -1,0 +1,64 @@
+ALGORITHM DivisorAndPrimeFactorization
+
+BEGIN
+
+    DECLARE N, ORIGINAL_N, divisor, divisorSum : INTEGER
+    DECLARE factor : INTEGER
+
+    INPUT N
+    ORIGINAL_N = N
+
+    DISPLAY "Prime Factors:"
+
+    factor = 2
+
+    WHILE factor * factor <= N DO
+
+        WHILE N MOD factor == 0 DO
+            DISPLAY factor
+            N = N / factor
+        END WHILE
+
+        factor = factor + 1
+
+    END WHILE
+
+    IF N > 1 THEN
+        DISPLAY N
+    END IF
+
+    divisorSum = 0
+
+    IF ORIGINAL_N > 1 THEN
+        divisorSum = 1
+    END IF
+
+    divisor = 2
+
+    WHILE divisor * divisor <= ORIGINAL_N DO
+
+        IF ORIGINAL_N MOD divisor == 0 THEN
+
+            divisorSum = divisorSum + divisor
+
+            IF divisor != ORIGINAL_N / divisor THEN
+                divisorSum = divisorSum + ORIGINAL_N / divisor
+            END IF
+
+        END IF
+
+        divisor = divisor + 1
+
+    END WHILE
+
+    DISPLAY "Sum of Proper Divisors:", divisorSum
+
+    IF divisorSum == ORIGINAL_N THEN
+        DISPLAY "Perfect Number"
+    ELSE IF divisorSum > ORIGINAL_N THEN
+        DISPLAY "Abundant Number"
+    ELSE
+        DISPLAY "Deficient Number"
+    END IF
+
+END

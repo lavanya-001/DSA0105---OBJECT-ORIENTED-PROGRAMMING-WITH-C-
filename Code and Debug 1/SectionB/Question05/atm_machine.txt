@@ -1,0 +1,70 @@
+ALGORITHM ATMStateMachine
+
+BEGIN
+
+    DECLARE correctPIN : INTEGER
+    DECLARE enteredPIN : INTEGER
+    DECLARE attempts : INTEGER
+    DECLARE balance : REAL
+    DECLARE amount : REAL
+    DECLARE authenticated : BOOLEAN
+    DECLARE choice : INTEGER
+
+    correctPIN = 4821
+    balance = 1000
+    attempts = 0
+    authenticated = FALSE
+
+    WHILE attempts < 3 AND authenticated == FALSE DO
+
+        INPUT enteredPIN
+
+        IF enteredPIN == correctPIN THEN
+            authenticated = TRUE
+            DISPLAY "PIN Accepted"
+
+        ELSE
+            attempts = attempts + 1
+            DISPLAY "Incorrect PIN"
+        END IF
+
+    END WHILE
+
+    IF authenticated == FALSE THEN
+        DISPLAY "Account Locked"
+        STOP
+    END IF
+
+    choice = 1
+
+    WHILE choice != 0 DO
+
+        DISPLAY "1. Withdraw"
+        DISPLAY "0. Exit"
+        INPUT choice
+
+        IF choice == 1 THEN
+
+            INPUT amount
+
+            IF amount MOD 100 != 0 THEN
+                DISPLAY "Invalid Amount"
+                
+            ELSE IF amount > balance THEN
+                DISPLAY "Insufficient Balance"
+
+            ELSE
+                balance = balance - amount
+                DISPLAY "Withdrawal Successful"
+                DISPLAY "Remaining Balance:", balance
+            END IF
+
+        ELSE IF choice != 0 THEN
+            DISPLAY "Invalid Choice"
+        END IF
+
+    END WHILE
+
+    DISPLAY "Thank You for Using ATM"
+
+END

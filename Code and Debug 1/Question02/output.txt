@@ -1,0 +1,4 @@
+Local Rate: 0.05
+Corporate Rate: 12
+Inner total: 1050
+Final Global Calculation: 1180

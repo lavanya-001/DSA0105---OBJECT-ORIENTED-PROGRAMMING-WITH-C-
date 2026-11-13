@@ -1,0 +1,53 @@
+ALGORITHM TaxCalculationEngine
+
+BEGIN
+
+    DECLARE grossIncome : REAL
+    DECLARE deduction80C : REAL
+    DECLARE healthInsurance : REAL
+    DECLARE totalDeductions : REAL
+    DECLARE taxableIncome : REAL
+    DECLARE tax : REAL
+    DECLARE cess : REAL
+    DECLARE finalTax : REAL
+
+    grossIncome = 1200000
+    deduction80C = 150000
+    healthInsurance = 25000
+
+    IF deduction80C > 150000 THEN
+        deduction80C = 150000
+    END IF
+
+    IF healthInsurance > 25000 THEN
+        healthInsurance = 25000
+    END IF
+
+    totalDeductions = deduction80C + healthInsurance
+    taxableIncome = grossIncome - totalDeductions
+
+    tax = 0
+
+    IF taxableIncome > 250000 THEN
+        tax = tax + MIN(taxableIncome - 250000, 250000) * 0.05
+    END IF
+
+    IF taxableIncome > 500000 THEN
+        tax = tax + MIN(taxableIncome - 500000, 500000) * 0.20
+    END IF
+
+    IF taxableIncome > 1000000 THEN
+        tax = tax + (taxableIncome - 1000000) * 0.30
+    END IF
+
+    cess = tax * 0.04
+    finalTax = tax + cess
+
+    DISPLAY "Gross Income:", grossIncome
+    DISPLAY "Total Deductions:", totalDeductions
+    DISPLAY "Taxable Income:", taxableIncome
+    DISPLAY "Basic Tax:", tax
+    DISPLAY "Health and Education Cess:", cess
+    DISPLAY "Final Tax:", finalTax
+
+END

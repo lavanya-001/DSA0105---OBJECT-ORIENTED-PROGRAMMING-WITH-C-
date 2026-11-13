@@ -1,0 +1,3 @@
+Scaled Max: 40
+Updated Array[1]: 999
+Scaled Max Value: 40

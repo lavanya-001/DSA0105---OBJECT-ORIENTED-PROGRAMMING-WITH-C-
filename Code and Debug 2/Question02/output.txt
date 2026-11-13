@@ -1,0 +1,5 @@
+Total Reserves in Vault: $8000
+Account Holder: Alice
+Balance: $5000
+Account Holder: Bob
+Balance: $3000

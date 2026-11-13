@@ -1,0 +1,3 @@
+Size without virtual inheritance: 8 bytes
+Student Person ID: 100
+Staff Person ID: 100

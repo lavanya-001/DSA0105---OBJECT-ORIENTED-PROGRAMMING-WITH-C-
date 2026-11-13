@@ -1,0 +1,20 @@
+VIRTUAL BASE CLASS CONSTRUCTION
+Person Student Staff TA 
+
+TEACHING ASSISTANT DETAILS
+Name: Lavanya
+ID: 101
+Phone: 9876543210
+Programme: CSE
+CGPA: 8.5
+Department: Computer Science
+Salary: 25000
+
+RESEARCH SCHOLAR
+Person Student Name: Kavya
+ID: 102
+Phone: 9876501234
+Research Fellowship: 15000
+
+OBJECT SIZE
+TeachingAssistant size: 168 bytes

@@ -1,0 +1,41 @@
+VEHICLE RENTAL FLEET
+
+AVAILABLE VEHICLES
+BIKE101 | Daily Rate: Rs. 100 | Status: Available
+TW202 | Daily Rate: Rs. 300 | Status: Available
+Fuel: 5 litres | Service Due: 20-12-2026
+CAR303 | Daily Rate: Rs. 1500 | Status: Available
+Seats: 5 | Fuel: 20 litres | Service Due: 15-12-2026
+EV404 | Daily Rate: Rs. 2000 | Status: Available
+Battery Capacity: 60 kWh
+
+RENTING VEHICLES
+BIKE101 rented successfully.
+TW202 rented successfully.
+CAR303 rented successfully.
+EV404 rented successfully.
+
+RENTAL CHARGES FOR 2 DAYS
+Charge: Rs. 200
+Charge: Rs. 650
+Charge: Rs. 3200
+Charge: Rs. 4600
+
+RETURNING VEHICLES
+BIKE101 returned. Late charge: Rs. 50
+TW202 returned. Late charge: Rs. 0
+
+ADDING NEW VEHICLE TYPE
+BUS505 | Daily Rate: Rs. 3000 | Status: Available
+Bus Battery: 150 kWh
+
+FINAL FLEET LIST
+BIKE101 | Daily Rate: Rs. 100 | Status: Available
+TW202 | Daily Rate: Rs. 300 | Status: Available
+Fuel: 5 litres | Service Due: 20-12-2026
+CAR303 | Daily Rate: Rs. 1500 | Status: Rented
+Seats: 5 | Fuel: 20 litres | Service Due: 15-12-2026
+EV404 | Daily Rate: Rs. 2000 | Status: Rented
+Battery Capacity: 60 kWh
+BUS505 | Daily Rate: Rs. 3000 | Status: Available
+Bus Battery: 150 kWh

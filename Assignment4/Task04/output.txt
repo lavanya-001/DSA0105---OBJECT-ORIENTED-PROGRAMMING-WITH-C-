@@ -1,0 +1,23 @@
+UNSAFE ACCOUNT DEMONSTRATION
+SeniorAccount created
+Non-virtual rate: 3.5
+Virtual rate: 4
+
+OBJECT SLICING
+SeniorAccount created
+Copied account rate: 3.5
+
+DELETING THROUGH BASE POINTER
+Account destructor called
+
+REPAIRED ACCOUNT DESIGN
+SeniorAccount created
+Account interest rate: 3.5%
+Account interest rate: 4%
+
+Smart pointers automatically release memory.
+Account destructor called
+Account destructor called
+Account destructor called
+SeniorAccount destructor called
+Account destructor called

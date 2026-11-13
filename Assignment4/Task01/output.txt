@@ -1,0 +1,14 @@
+COLLEGE PAYROLL SYSTEM
+
+Name: Arun
+ID: 101
+Salary: Rs. 81000
+-------------------
+Name: Priya
+ID: 102
+Salary: Rs. 42600
+-------------------
+Name: Kumar
+ID: 103
+Salary: Rs. 40000
+-------------------

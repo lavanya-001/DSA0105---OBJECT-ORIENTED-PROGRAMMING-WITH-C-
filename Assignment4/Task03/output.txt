@@ -1,0 +1,30 @@
+STUDENT CONSTRUCTION AND DESTRUCTION
+Address constructed
+Person constructed
+Course constructed
+Student constructed
+192311001 Kavya (19) Salem-636001
+Student destroyed
+Course destroyed
+Person destroyed
+Address destroyed
+
+TEACHING ASSISTANT CONSTRUCTION
+Address constructed
+Person constructed
+Course constructed
+Student constructed
+Staff constructed
+TeachingAssistant constructed
+TeachingAssistant destroyed
+Staff destroyed
+Student destroyed
+Course destroyed
+Person destroyed
+Address destroyed
+
+CAR CONSTRUCTION AND DESTRUCTION
+Vehicle Engine Car | ~Car ~Engine ~Vehicle 
+
+SIZE OF TEACHING ASSISTANT
+176 bytes

@@ -1,0 +1,15 @@
+HOSPITAL BILLING SYSTEM
+
+Outpatient Bill: Rs.1500
+Self payment: Rs.1500
+
+Inpatient Bill: Rs.25000
+Insurance payment: Rs.25000
+
+Emergency Bill: Rs.10000
+Corporate payment: Rs.10000
+
+All transactions completed.
+Bill destroyed
+Bill destroyed
+Bill destroyed

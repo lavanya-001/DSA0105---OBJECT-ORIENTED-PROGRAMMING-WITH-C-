@@ -1,0 +1,2 @@
+[AUDIT LOG]: Intercepted DB error.
+Client caught TimeoutError! Duration: 5000 ms

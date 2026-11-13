@@ -1,0 +1,64 @@
+ALGORITHM FileStreamPipeline
+
+CLASS ResourceGuard
+    DECLARE fileHandle
+
+    CONSTRUCTOR(filename)
+        OPEN filename
+        STORE fileHandle
+        DISPLAY "File resource acquired"
+    END CONSTRUCTOR
+
+    DESTRUCTOR
+        CLOSE fileHandle
+        DISPLAY "File resource released"
+    END DESTRUCTOR
+END CLASS
+
+
+CLASS CRCValidationException
+    DECLARE expectedChecksum
+    DECLARE calculatedChecksum
+
+    CONSTRUCTOR(expected, calculated)
+        expectedChecksum = expected
+        calculatedChecksum = calculated
+    END CONSTRUCTOR
+END CLASS
+
+
+FUNCTION IngestDataStream(filename)
+    CREATE ResourceGuard guard(filename)
+
+    DISPLAY "Reading file blocks"
+
+    DECLARE expectedChecksum = 100
+    DECLARE calculatedChecksum = 90
+
+    IF expectedChecksum != calculatedChecksum THEN
+        THROW CRCValidationException(
+            expectedChecksum, calculatedChecksum
+        )
+    END IF
+
+    DISPLAY "File validation successful"
+END FUNCTION
+
+
+MAIN
+    TRY
+        CALL IngestDataStream("data.txt")
+
+    CATCH CRCValidationException error
+        DISPLAY "CRC Validation Failed"
+        DISPLAY "Expected Checksum: ", error.expectedChecksum
+        DISPLAY "Calculated Checksum: ", error.calculatedChecksum
+
+    CATCH ALL
+        DISPLAY "Unknown error occurred"
+    END TRY
+
+    DISPLAY "Pipeline execution completed"
+END MAIN
+
+END ALGORITHM

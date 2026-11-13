@@ -1,0 +1,49 @@
+ALGORITHM PolymorphicGameEngine
+
+ABSTRACT CLASS GameObject
+    DECLARE PURE VIRTUAL FUNCTION Update(deltaTime)
+    DECLARE PURE VIRTUAL FUNCTION Render()
+    DECLARE VIRTUAL DESTRUCTOR
+END CLASS
+
+CLASS ParticleSystem EXTENDS GameObject
+    DECLARE POINTER particleCoordinates
+    DECLARE particleCount
+
+    CONSTRUCTOR(count)
+        particleCount = count
+        ALLOCATE memory for particleCoordinates
+        DISPLAY "Particle memory allocated"
+    END CONSTRUCTOR
+
+    FUNCTION Update(deltaTime)
+        DISPLAY "Updating particles using delta time: ", deltaTime
+    END FUNCTION
+
+    FUNCTION Render()
+        DISPLAY "Rendering particle system"
+    END FUNCTION
+
+    DESTRUCTOR
+        DEALLOCATE particleCoordinates
+        DISPLAY "Particle memory released"
+    END DESTRUCTOR
+END CLASS
+
+MAIN
+    DECLARE GameObject POINTER objects[2]
+
+    objects[0] = NEW ParticleSystem(100)
+    objects[1] = NEW ParticleSystem(50)
+
+    FOR EACH object IN objects
+        object->Update(0.016)
+        object->Render()
+    END FOR
+
+    FOR EACH object IN objects
+        DELETE object
+    END FOR
+END MAIN
+
+END ALGORITHM

@@ -1,0 +1,5 @@
+Shape created.
+Allocated 1000 vertices on heap.
+Rendering polygon with 1000 vertices.
+Deallocating polygon vertex heap memory.
+Shape destroyed.

@@ -1,0 +1,69 @@
+ALGORITHM UniversalPaymentGateway
+
+ABSTRACT CLASS PaymentGateway
+    DECLARE VIRTUAL FUNCTION Authorize(amount) RETURNS BOOLEAN
+    DECLARE VIRTUAL FUNCTION Capture() RETURNS BOOLEAN
+    DECLARE VIRTUAL DESTRUCTOR
+END CLASS
+
+CLASS CreditCardGateway EXTENDS PaymentGateway
+    FUNCTION Authorize(amount)
+        INPUT cardNumber, CVV
+
+        IF LENGTH(cardNumber) = 16 AND LENGTH(CVV) = 3 THEN
+            DISPLAY "Credit Card Authorization Successful"
+            RETURN TRUE
+        ELSE
+            DISPLAY "Invalid Credit Card Details"
+            RETURN FALSE
+        END IF
+    END FUNCTION
+
+    FUNCTION Capture()
+        DISPLAY "Credit Card Payment Captured"
+        RETURN TRUE
+    END FUNCTION
+END CLASS
+
+CLASS CryptoGateway EXTENDS PaymentGateway
+    FUNCTION Authorize(amount)
+        INPUT walletHash, gasFee
+
+        IF walletHash STARTS WITH "0x" AND gasFee > 0 THEN
+            DISPLAY "Cryptocurrency Authorization Successful"
+            RETURN TRUE
+        ELSE
+            DISPLAY "Invalid Wallet or Gas Fee"
+            RETURN FALSE
+        END IF
+    END FUNCTION
+
+    FUNCTION Capture()
+        DISPLAY "Cryptocurrency Payment Captured"
+        RETURN TRUE
+    END FUNCTION
+END CLASS
+
+MAIN
+    DECLARE PaymentGateway POINTER gateway
+    DECLARE amount = 1500
+
+    DISPLAY "Select Payment Method: 1. Credit Card  2. Crypto"
+    INPUT choice
+
+    IF choice = 1 THEN
+        gateway = NEW CreditCardGateway
+    ELSE
+        gateway = NEW CryptoGateway
+    END IF
+
+    IF gateway->Authorize(amount) = TRUE THEN
+        gateway->Capture()
+    ELSE
+        DISPLAY "Payment Failed"
+    END IF
+
+    DELETE gateway
+END MAIN
+
+END ALGORITHM

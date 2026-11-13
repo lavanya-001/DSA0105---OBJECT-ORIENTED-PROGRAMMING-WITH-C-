@@ -1,0 +1,60 @@
+ALGORITHM ScientificTelemetryCalibration
+
+CLASS OutOfBoundsException
+    DECLARE temperature
+
+    CONSTRUCTOR(value)
+        temperature = value
+    END CONSTRUCTOR
+END CLASS
+
+
+FUNCTION CalibrateThermalSensors(rawVoltage) NOEXCEPT(FALSE)
+
+    DECLARE finalTemp = rawVoltage * 100
+
+    DISPLAY "Calculated Temperature: ", finalTemp
+
+    IF finalTemp < -273.15 OR finalTemp > 1500.0 THEN
+        THROW OutOfBoundsException(finalTemp)
+    END IF
+
+    RETURN finalTemp
+
+END FUNCTION
+
+
+FUNCTION CommitTelemetry(finalTemp) NOEXCEPT
+
+    TRY
+        DISPLAY "Committing Temperature: ", finalTemp
+
+    CATCH ALL
+        DISPLAY "Internal telemetry error suppressed"
+    END TRY
+
+END FUNCTION
+
+
+MAIN
+
+    DECLARE rawVoltage = -3.0
+
+    TRY
+        DECLARE temperature = CalibrateThermalSensors(rawVoltage)
+        CALL CommitTelemetry(temperature)
+
+    CATCH OutOfBoundsException error
+        DISPLAY "SAFETY ALERT: Temperature out of range!"
+        DISPLAY "Invalid Temperature: ", error.temperature
+
+    CATCH ALL
+        DISPLAY "Unknown calibration error"
+
+    END TRY
+
+    DISPLAY "Telemetry process completed"
+
+END MAIN
+
+END ALGORITHM

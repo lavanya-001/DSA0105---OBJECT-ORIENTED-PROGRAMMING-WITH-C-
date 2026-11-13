@@ -1,0 +1,71 @@
+ALGORITHM ResilientBankingEngine
+
+CLASS TransactionException
+    DECLARE reason
+    CONSTRUCTOR(reason)
+        STORE reason
+    END CONSTRUCTOR
+END CLASS
+
+CLASS AccountFrozenException EXTENDS TransactionException
+    CONSTRUCTOR()
+        CALL BASE CONSTRUCTOR("Account is frozen")
+    END CONSTRUCTOR
+END CLASS
+
+CLASS DailyLimitExceededException EXTENDS TransactionException
+    DECLARE excessAmount
+
+    CONSTRUCTOR(excess)
+        CALL BASE CONSTRUCTOR("Daily withdrawal limit exceeded")
+        STORE excessAmount = excess
+    END CONSTRUCTOR
+END CLASS
+
+FUNCTION DebitLedger(amount, accountFrozen, dailyTotal)
+    IF accountFrozen = TRUE THEN
+        THROW AccountFrozenException
+    END IF
+
+    IF dailyTotal + amount > 50000 THEN
+        THROW DailyLimitExceededException(dailyTotal + amount - 50000)
+    END IF
+
+    DISPLAY "Withdrawal Successful"
+END FUNCTION
+
+FUNCTION AuditTransactionWrapper(amount, accountFrozen, dailyTotal)
+    TRY
+        CALL DebitLedger(amount, accountFrozen, dailyTotal)
+
+    CATCH TransactionException error
+        DISPLAY "AUDIT LOG: ", error.reason
+        RETHROW
+    END TRY
+END FUNCTION
+
+MAIN
+    DECLARE withdrawal = 1000
+    DECLARE accountFrozen = TRUE
+    DECLARE dailyTotal = 10000
+
+    TRY
+        CALL AuditTransactionWrapper(
+            withdrawal, accountFrozen, dailyTotal
+        )
+
+    CATCH AccountFrozenException error
+        DISPLAY "Main: Account is frozen. Transaction rejected."
+
+    CATCH DailyLimitExceededException error
+        DISPLAY "Main: Daily limit exceeded."
+        DISPLAY "Excess Amount: ", error.excessAmount
+
+    CATCH TransactionException error
+        DISPLAY "Main: Transaction failed."
+    END TRY
+
+    DISPLAY "Banking process completed."
+END MAIN
+
+END ALGORITHM

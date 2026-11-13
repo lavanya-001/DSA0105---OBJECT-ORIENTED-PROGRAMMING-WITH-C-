@@ -1,0 +1,2 @@
+Base pointer total: 100
+Derived object total: 500

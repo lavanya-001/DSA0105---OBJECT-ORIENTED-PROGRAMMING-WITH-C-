@@ -1,0 +1,93 @@
+QUESTION 4: POLYNOMIAL CLASS
+
+CLASS Polynomial
+
+PRIVATE:
+    INTEGER degree
+    ARRAY coefficients
+
+PUBLIC:
+
+    CONSTRUCTOR(d)
+        degree = d
+        ALLOCATE coefficients[degree + 1]
+
+        FOR i = 0 TO degree
+            coefficients[i] = 0
+        END FOR
+    END CONSTRUCTOR
+
+    COPY CONSTRUCTOR(source)
+        degree = source.degree
+        ALLOCATE new coefficients[degree + 1]
+
+        FOR i = 0 TO degree
+            coefficients[i] = source.coefficients[i]
+        END FOR
+    END COPY CONSTRUCTOR
+
+    DESTRUCTOR()
+        DEALLOCATE coefficients
+    END DESTRUCTOR
+
+    OPERATOR [](index) RETURNS REFERENCE
+        IF index < 0 OR index > degree
+            DISPLAY "Index out of range"
+            STOP
+        END IF
+
+        RETURN coefficients[index]
+    END OPERATOR
+
+    OPERATOR +(other) RETURNS Polynomial
+        maxDegree = MAX(degree, other.degree)
+        CREATE result AS Polynomial(maxDegree)
+
+        FOR i = 0 TO maxDegree
+            value1 = 0
+            value2 = 0
+
+            IF i <= degree
+                value1 = coefficients[i]
+            END IF
+
+            IF i <= other.degree
+                value2 = other.coefficients[i]
+            END IF
+
+            result[i] = value1 + value2
+        END FOR
+
+        RETURN result
+    END OPERATOR
+
+END CLASS
+
+
+MAIN
+
+    CREATE P1 AS Polynomial(2)
+    P1[0] = 5
+    P1[1] = 2
+    P1[2] = 3
+
+    CREATE P2 AS Polynomial(3)
+    P2[0] = 7
+    P2[1] = 0
+    P2[2] = 1
+    P2[3] = 4
+
+    CREATE P3 AS P1 + P2
+
+    DISPLAY "Polynomial 1: 3x^2 + 2x + 5"
+    DISPLAY "Polynomial 2: 4x^3 + x^2 + 7"
+    DISPLAY "Sum: 4x^3 + 4x^2 + 2x + 12"
+
+END MAIN
+
+
+EXPECTED OUTPUT
+
+Polynomial 1: 3x^2 + 2x + 5
+Polynomial 2: 4x^3 + x^2 + 7
+Sum: 4x^3 + 4x^2 + 2x + 12

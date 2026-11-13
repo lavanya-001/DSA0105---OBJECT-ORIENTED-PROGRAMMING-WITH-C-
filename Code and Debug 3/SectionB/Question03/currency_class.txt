@@ -1,0 +1,79 @@
+QUESTION 3: FINANCIAL CURRENCY CLASS
+
+CLASS Currency
+
+PRIVATE:
+    INTEGER dollars
+    INTEGER cents
+
+PUBLIC:
+
+    CONSTRUCTOR(d = 0, c = 0)
+        dollars = d
+        cents = c
+
+        dollars = dollars + (cents DIV 100)
+        cents = cents MOD 100
+    END CONSTRUCTOR
+
+    OPERATOR -() RETURNS Currency
+        RETURN Currency(-dollars, -cents)
+    END OPERATOR
+
+    FRIEND OPERATOR <<(REF outStream, REF cur AS Currency)
+        DISPLAY "$", cur.dollars, ".", FORMAT_TWO_DIGITS(cur.cents)
+    END FRIEND
+
+    FRIEND OPERATOR >>(REF inStream, REF cur AS Currency)
+        INPUT cur.dollars
+        INPUT cur.cents
+
+        cur.dollars = cur.dollars + (cur.cents DIV 100)
+        cur.cents = cur.cents MOD 100
+    END FRIEND
+
+END CLASS
+
+
+MAIN
+
+    CREATE cur AS Currency(5, 275)
+
+    DISPLAY "Original Currency:"
+    OUTPUT cur
+
+    CREATE negative AS -cur
+
+    DISPLAY "After Unary Negation:"
+    OUTPUT negative
+
+END MAIN
+
+
+DRY RUN
+
+Input:
+Dollars = 5
+Cents = 275
+
+Normalization:
+Dollars = 5 + (275 DIV 100)
+        = 5 + 2
+        = 7
+
+Cents = 275 MOD 100
+      = 75
+
+Normalized Currency = $7.75
+
+Unary Negation:
+Negative Currency = -$7.75
+
+
+EXPECTED OUTPUT
+
+Original Currency:
+$7.75
+
+After Unary Negation:
+-$7.75

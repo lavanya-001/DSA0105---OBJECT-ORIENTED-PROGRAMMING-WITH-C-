@@ -1,0 +1,97 @@
+QUESTION 5: 2D VECTOR OPERATORS
+
+CLASS Vector2D
+
+PRIVATE:
+    REAL x, y
+
+PUBLIC:
+
+    CONSTRUCTOR(a = 0, b = 0)
+        x = a
+        y = b
+    END CONSTRUCTOR
+
+    PREFIX OPERATOR ++()
+        x = x + 1
+        y = y + 1
+        RETURN THIS
+    END OPERATOR
+
+    POSTFIX OPERATOR ++(dummy INTEGER)
+        CREATE old AS COPY OF THIS
+        x = x + 1
+        y = y + 1
+        RETURN old
+    END OPERATOR
+
+    OPERATOR +=(other)
+        x = x + other.x
+        y = y + other.y
+        RETURN THIS
+    END OPERATOR
+
+    DISPLAY()
+        OUTPUT "(" , x , ", " , y , ")"
+    END DISPLAY
+
+END CLASS
+
+
+MAIN
+
+    CREATE v1 AS Vector2D(5, 8)
+
+    CREATE v2 AS PREFIX_INCREMENT(v1)
+
+    CREATE v3 AS POSTFIX_INCREMENT(v1)
+
+    DISPLAY "After Prefix Increment:"
+    DISPLAY v2
+
+    DISPLAY "After Postfix Increment:"
+    DISPLAY v3
+
+    DISPLAY "Final v1:"
+    DISPLAY v1
+
+    CREATE v4 AS Vector2D(2, 3)
+    v1 += v4
+
+    DISPLAY "After Compound Assignment:"
+    DISPLAY v1
+
+END MAIN
+
+
+DRY RUN
+
+Initial v1 = (5, 8)
+
+Prefix increment:
+v1 = (6, 9)
+v2 = (6, 9)
+
+Postfix increment:
+v3 = (6, 9)
+v1 = (7, 10)
+
+Compound assignment:
+v4 = (2, 3)
+v1 = (7, 10) + (2, 3)
+v1 = (9, 13)
+
+
+EXPECTED OUTPUT
+
+After Prefix Increment:
+(6, 9)
+
+After Postfix Increment:
+(6, 9)
+
+Final v1:
+(7, 10)
+
+After Compound Assignment:
+(9, 13)

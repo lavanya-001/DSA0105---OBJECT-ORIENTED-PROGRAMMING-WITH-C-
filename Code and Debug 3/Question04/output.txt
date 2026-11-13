@@ -1,0 +1,4 @@
+Base constructor called
+Derived constructor called
+Derived destructor called
+Base destructor called

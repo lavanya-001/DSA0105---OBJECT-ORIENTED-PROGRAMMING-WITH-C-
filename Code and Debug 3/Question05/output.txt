@@ -1,0 +1,3 @@
+Original: Counter: 5
+After prefix increment: Counter: 6
+After postfix increment: Counter: 7

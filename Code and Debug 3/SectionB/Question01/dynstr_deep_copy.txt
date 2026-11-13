@@ -1,0 +1,102 @@
+QUESTION 1: DYNAMIC STRING ENGINE WITH DEEP COPY AND OVERLOADED +
+
+CLASS DynStr
+
+PRIVATE:
+    POINTER TO CHARACTER dataPtr
+    INTEGER charCount
+
+PUBLIC:
+
+    CONSTRUCTOR(sourceString AS STRING)
+        charCount = LENGTH(sourceString)
+        ALLOCATE ARRAY dataPtr[charCount + 1]
+        COPY sourceString INTO dataPtr
+        DISPLAY "String memory allocated"
+    END CONSTRUCTOR
+
+    COPY CONSTRUCTOR(REF other AS DynStr)
+        charCount = other.charCount
+        ALLOCATE ARRAY dataPtr[charCount + 1]
+
+        FOR i = 0 TO charCount
+            dataPtr[i] = other.dataPtr[i]
+        ENDFOR
+
+        DISPLAY "Deep copy completed"
+    END COPY CONSTRUCTOR
+
+    DESTRUCTOR()
+        DEALLOCATE dataPtr
+        dataPtr = NULL
+        DISPLAY "Memory released"
+    END DESTRUCTOR
+
+    OPERATOR +(REF rhs AS DynStr) RETURNS DynStr
+        INTEGER newLength
+        STRING temporary
+
+        newLength = charCount + rhs.charCount
+
+        temporary = CONCATENATE(dataPtr, rhs.dataPtr)
+
+        CREATE result AS DynStr(temporary)
+
+        RETURN result
+    END OPERATOR
+
+    METHOD Display()
+        DISPLAY dataPtr
+    END METHOD
+
+END CLASS
+
+
+MAIN
+
+    CREATE strA AS DynStr("Hello ")
+    CREATE strB AS DynStr("World!")
+
+    CREATE strC AS DynStr(strA + strB)
+
+    DISPLAY "Concatenated String:"
+    strC.Display()
+
+END MAIN
+
+
+DRY RUN TABLE
+
+Step 1:
+    Create strA = "Hello "
+    Length = 6
+    Allocate 7 characters.
+
+Step 2:
+    Create strB = "World!"
+    Length = 6
+    Allocate 7 characters.
+
+Step 3:
+    Execute strA + strB
+    New length = 6 + 6 = 12
+    Temporary string = "Hello World!"
+
+Step 4:
+    Create strC
+    Allocate 13 characters.
+    Copy "Hello World!" into strC.
+
+Step 5:
+    Display strC.
+    Output = Hello World!
+
+Step 6:
+    Destroy objects.
+    Release dynamically allocated memory.
+
+
+EXPECTED OUTPUT
+
+Concatenated String:
+Hello World!

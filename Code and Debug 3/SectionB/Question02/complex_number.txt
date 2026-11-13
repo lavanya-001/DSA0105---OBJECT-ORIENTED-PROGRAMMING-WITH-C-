@@ -1,0 +1,108 @@
+QUESTION 2: COMPLEX NUMBER SYSTEM
+
+CLASS Complex
+
+PRIVATE:
+    REAL real
+    REAL imag
+
+PUBLIC:
+
+    CONSTRUCTOR()
+        real = 0.0
+        imag = 0.0
+    END CONSTRUCTOR
+
+    CONSTRUCTOR(r AS REAL)
+        real = r
+        imag = 0.0
+    END CONSTRUCTOR
+
+    CONSTRUCTOR(r AS REAL, i AS REAL)
+        real = r
+        imag = i
+    END CONSTRUCTOR
+
+    OPERATOR +(REF other AS Complex) RETURNS Complex
+        RETURN Complex(real + other.real,
+                       imag + other.imag)
+    END OPERATOR
+
+    OPERATOR *(REF other AS Complex) RETURNS Complex
+        REAL r
+        REAL i
+
+        r = (real * other.real) - (imag * other.imag)
+        i = (real * other.imag) + (imag * other.real)
+
+        RETURN Complex(r, i)
+    END OPERATOR
+
+    OPERATOR ==(REF other AS Complex) RETURNS BOOLEAN
+        RETURN (real == other.real AND imag == other.imag)
+    END OPERATOR
+
+    METHOD Display()
+        DISPLAY real, " + ", imag, "i"
+    END METHOD
+
+END CLASS
+
+
+MAIN
+
+    CREATE C1 AS Complex(3.0, 2.0)
+    CREATE C2 AS Complex(1.0, 4.0)
+
+    CREATE sum AS C1 + C2
+    CREATE product AS C1 * C2
+
+    DISPLAY "Addition:"
+    sum.Display()
+
+    DISPLAY "Multiplication:"
+    product.Display()
+
+    IF C1 == C2 THEN
+        DISPLAY "Complex numbers are equal"
+    ELSE
+        DISPLAY "Complex numbers are not equal"
+    ENDIF
+
+END MAIN
+
+
+DRY RUN TABLE
+
+C1 = 3 + 2i
+C2 = 1 + 4i
+
+Multiplication:
+
+Real part = (3 * 1) - (2 * 4)
+          = 3 - 8
+          = -5
+
+Imaginary part = (3 * 4) + (2 * 1)
+               = 12 + 2
+               = 14
+
+Final Product = -5 + 14i
+
+Addition:
+
+Real part = 3 + 1 = 4
+Imaginary part = 2 + 4 = 6
+
+Final Sum = 4 + 6i
+
+
+EXPECTED OUTPUT
+
+Addition:
+4 + 6i
+
+Multiplication:
+-5 + 14i
+
+Complex numbers are not equal

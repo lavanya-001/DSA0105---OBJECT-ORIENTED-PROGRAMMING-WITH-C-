@@ -1,0 +1,6 @@
+Original buffer allocated: 0x56221353e020
+Copied buffer allocated: 0x56221353f050
+Processing sample 0: 0
+Deallocating buffer: 0x56221353f050
+Back in main, sample 0: 0
+Deallocating buffer: 0x56221353e020

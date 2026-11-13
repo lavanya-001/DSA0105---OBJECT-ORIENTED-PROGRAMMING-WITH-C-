@@ -1,0 +1,15 @@
+HOSPITAL ERROR TESTING
+
+Resource created
+Resource released
+Caught: Negative charge
+
+Caught: Claim exceeds cover
+
+Caught: Unknown package code
+
+Caught: stod
+
+Allocation failed: bad_alloc caught
+
+Program continues after errors.
